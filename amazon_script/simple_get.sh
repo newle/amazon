@@ -82,7 +82,7 @@ while [[ $newdub -ne $dub ]]; do
    newdub=`du -b ../$sellor.log | awk '{print $1}'`
 done
 
-cat *.result | awk -vFS="\t" 'length($3)>0{gsub(",",""); gsub("#",""); gsub(/\./,""); gsub("&nbsp;", " "); print $0}' | sort -nk3 > total.txt
+cat *.result | awk -vFS="\t" 'length($3)>0{gsub(",",""); gsub("#",""); gsub("&nbsp;", " "); print $0}' | sort -nk3 > total.txt
 cat *.result | awk -vFS="\t" 'length($3)==0' > norank.txt
 cat norank.txt >> total.txt
 
