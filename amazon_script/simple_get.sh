@@ -22,7 +22,7 @@ if [ $# -ge 2 ]; then
     . ./jp_core.sh
     else
         echo "          Usage: sh simple_get.sh sellorid countryname"
-        echo "                                           Available countryname candidate: uk  us de"
+        echo "                                           Available countryname candidate: uk us de ca fr es it jp"
         exit 1
     fi
 
@@ -31,7 +31,7 @@ if [ $# -ge 2 ]; then
    fi
 else
    echo "          Usage: sh simple_get.sh sellorid countryname"
-   echo "                                           Available countryname candidate: uk  us de"
+   echo "                                           Available countryname candidate: uk us de ca fr es it jp"
    exit 1
 fi
 
