@@ -80,7 +80,7 @@ while [[ $newdub -ne $dub ]]; do
    newdub=`du -b ../$sellor.log | awk '{print $1}'`
 done
 
-cat *.result | awk -vFS="\t" 'length($3)>0{gsub(",",""); gsub("#",""); print $0}' | sort -nk3 > total.txt
+cat *.result | awk -vFS="\t" 'length($3)>0{gsub(",",""); gsub("#",""); gsub(/\./,""); print $0}' | sort -nk3 > total.txt
 cat *.result | awk -vFS="\t" 'length($3)==0' > norank.txt
 cat norank.txt >> total.txt
 
@@ -99,7 +99,9 @@ awk -vFS="\t" '{print "<tr><td><a href=\""$2"\">"$1"</a></td><td>"$3"</td><td><i
 echo "</table>" >> ../$sellor"total.html"
 
 
-sz ../$sellor"total.txt"
+if [ $iftest -eq 0 ]; then
+ sz ../$sellor"total.txt"
+fi
 
 cd ..
 #rm $sellor -rf
