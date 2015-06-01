@@ -24,7 +24,7 @@ function processline()
       #tmpfilename=`mktemp $i.XXXXX`
       #iconv -f 'utf8' -t 'gb18030' $filename > $tmpfilename
       #mv $tmpfilename $filename
-      rank=`grep -a -o -zP "(id=\"SalesRank\")[^\(]+\d+[^\(]+(?=\()" $filename | tail -n 1 | awk -vFS="-" '{print $2" "$1}'`
+      rank=`grep -a -o -zP "(id=\"SalesRank\")[^\(]+\d+[^\(]+(?=\()" $filename | tail -n 1 | awk -vFS="-" '{print $2" in "$1}'`
       brand=`grep -a -o -zP "(?<=id=\"brand\")[^<]+</" $filename | grep -a -o -zP "(?<=>)[^<]+(?=</)"`
       name=`grep -a -o -zP "(?<=productTitle\")[^<]+</" $filename | grep -a -o -zP "(?<=>)[^<]+(?=</)"`
       review=`grep -a -o -zP "(?<=acrCustomerReviewText\")[^<]+</" $filename | grep -a -o -zP "(?<=>)[^<]+(?=</)" | awk '{print $1}'`
