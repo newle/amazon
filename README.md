@@ -5,11 +5,11 @@
             * country: support country includes: 
                 * uk - United Kindom
                 * us - American
-                * <del> ca - Canada </del>
-                * <del> de - Germany </del>
-                * <del> fr - France </del>
-                * <del> sp - Spain </del>
-                * <del> it - Italy </del>
+                * ca - Canada 
+                * de - Germany 
+                * fr - France 
+                * sp - Spain 
+                * it - Italy 
         * output: analysis result
             * key + total.txt
         * for example:
