@@ -14,8 +14,8 @@ if [ $# -ge 2 ]; then
     . ./ca_core.sh
     elif [ "$country"x = "fr"x ]; then
     . ./fr_core.sh
-    elif [ "$country"x = "sp"x ]; then
-    . ./sp_core.sh
+    elif [ "$country"x = "es"x ]; then
+    . ./es_core.sh
     elif [ "$country"x = "it"x ]; then
     . ./it_core.sh
     elif [ "$country"x = "jp"x ]; then

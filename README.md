@@ -13,9 +13,9 @@
         * output: analysis result
             * key + total.txt
         * for example:
-        > http://www.amazon.com/s?marketplaceID=ATVPDKIKX0DER&me=A3GWKTDVH3V66K&merchant=A3GWKTDVH3V66K&redirect=true
-        > sh simple_get.sh A3GWKTDVH3V66K us > A3GWKTDVH3V66K.log 2>&1 &
-        > result : A3GWKTDVH3V66Ktotal.txt
+            > http://www.amazon.com/s?marketplaceID=ATVPDKIKX0DER&me=A3GWKTDVH3V66K&merchant=A3GWKTDVH3V66K&redirect=true
+            > sh simple_get.sh A3GWKTDVH3V66K us > A3GWKTDVH3V66K.log 2>&1 &
+            > result : A3GWKTDVH3V66Ktotal.txt
     * usage: sh simple_get.sh [key] [country] > key.log 2>&1 &
 2. status log:
     * 2015-6-1 10:31:37 uk & us finished 
