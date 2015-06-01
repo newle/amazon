@@ -1,18 +1,38 @@
 #!/bin/sh
 
 
-if [ $# -eq 2 ]; then 
+iftest=0
+if [ $# -ge 2 ]; then 
     country=$2
     if [ "$country"x = "uk"x ]; then
     . ./uk_core.sh
     elif [ "$country"x = "us"x ]; then
     . ./us_core.sh
+    elif [ "$country"x = "de"x ]; then
+    . ./de_core.sh
+    elif [ "$country"x = "ca"x ]; then
+    . ./ca_core.sh
+    elif [ "$country"x = "fr"x ]; then
+    . ./fr_core.sh
+    elif [ "$country"x = "sp"x ]; then
+    . ./sp_core.sh
+    elif [ "$country"x = "it"x ]; then
+    . ./it_core.sh
+    else
+        echo "          Usage: sh simple_get.sh sellorid countryname"
+        echo "                                           Available countryname candidate: uk  us de"
+        exit 1
     fi
+
+   if [ $3"x" = "test"x ]; then
+       iftest=1;
+   fi
 else
    echo "          Usage: sh simple_get.sh sellorid countryname"
-   echo "                                           Available countryname candidate: uk  us"
+   echo "                                           Available countryname candidate: uk  us de"
    exit 1
 fi
+
 
 
 
@@ -40,6 +60,10 @@ while [[ 1 ]]; do
     cat $i.html | grep -a -o -zP "(?<=\")\w+(?=\")" | awk -v head=$head '{print $0"\t"head""$0;}' | while read line; do
         processline $i $line
     done
+
+    if [ $iftest -eq 1 ]; then
+       break;
+    fi
   start=$((start+1))
 done
 
