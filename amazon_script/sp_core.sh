@@ -21,6 +21,9 @@ function processline()
     {
       filename=`mktemp $i.XXXXX`
       wget $url --header="User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36" -O $filename
+      tmpfilename=`mktemp $i.XXXXX`
+      iconv -f 'utf8' -t 'gb18030' $filename > $tmpfilename
+      mv $tmpfilename $filename
       rank=`grep -a -o -zP "(s vendidos de Amazon)[^\(]+\d+[^\(]+(?=\()" $filename | tail -n 1 | grep -a -o -zP "\d+.*"`
       brand=`grep -a -o -zP "(?<=id=\"brand\")[^<]+</" $filename | grep -a -o -zP "(?<=>)[^<]+(?=</)"`
       name=`grep -a -o -zP "(?<=productTitle\")[^<]+</" $filename | grep -a -o -zP "(?<=>)[^<]+(?=</)"`

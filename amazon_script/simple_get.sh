@@ -18,6 +18,8 @@ if [ $# -ge 2 ]; then
     . ./sp_core.sh
     elif [ "$country"x = "it"x ]; then
     . ./it_core.sh
+    elif [ "$country"x = "jp"x ]; then
+    . ./jp_core.sh
     else
         echo "          Usage: sh simple_get.sh sellorid countryname"
         echo "                                           Available countryname candidate: uk  us de"
@@ -80,7 +82,7 @@ while [[ $newdub -ne $dub ]]; do
    newdub=`du -b ../$sellor.log | awk '{print $1}'`
 done
 
-cat *.result | awk -vFS="\t" 'length($3)>0{gsub(",",""); gsub("#",""); gsub(/\./,""); print $0}' | sort -nk3 > total.txt
+cat *.result | awk -vFS="\t" 'length($3)>0{gsub(",",""); gsub("#",""); gsub(/\./,""); gsub("&nbsp;", " "); print $0}' | sort -nk3 > total.txt
 cat *.result | awk -vFS="\t" 'length($3)==0' > norank.txt
 cat norank.txt >> total.txt
 
