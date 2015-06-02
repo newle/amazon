@@ -16,8 +16,12 @@
         * for example: [link](http://www.amazon.com/s?marketplaceID=ATVPDKIKX0DER&me=A3GWKTDVH3V66K&merchant=A3GWKTDVH3V66K&redirect=true)
         
            ```shell
+           start:
              sh simple_get.sh A3GWKTDVH3V66K us > A3GWKTDVH3V66Kus.log 2>&1 &
-             result : A3GWKTDVH3V66Kustotal.txt
+             or
+             sh start.sh A3GWKTDVH3V66K us
+           result : 
+             A3GWKTDVH3V66Kustotal.txt
            ```
     * usage: sh simple_get.sh [key] [country] > keycountry.log 2>&1 &
 2. status log:
