@@ -42,8 +42,9 @@ fi
 #touch $sellor.lock
 
 sellor=$1
-mkdir -p $sellor
-cd $sellor
+sellor_path=$1$2
+mkdir -p $sellor_path
+cd $sellor_path
 #rm * -rf
 
 start=1
@@ -73,39 +74,39 @@ done
 #http://www.amazon.co.uk/dp/B009NBUJL2/ref=aag_m_pw_dp?ie=UTF8&m=A3EFHR7YJIPFL0
 #http://www.amazon.co.uk/dp/B009NBUJL2?ie=UTF8&m=A3EFHR7YJIPFL0
 
-dub=`du -b ../$sellor.log | awk '{print $1}'`
+dub=`du -b ../$sellor_path.log | awk '{print $1}'`
 sleep 2
-newdub=`du -b ../$sellor.log | awk '{print $1}'`
+newdub=`du -b ../$sellor_path.log | awk '{print $1}'`
 while [[ $newdub -ne $dub ]]; do
    dub=$newdub
    sleep 2
-   newdub=`du -b ../$sellor.log | awk '{print $1}'`
+   newdub=`du -b ../$sellor_path.log | awk '{print $1}'`
 done
 
 cat *.result | awk -vFS="\t" 'length($3)>0{gsub(",",""); gsub("#",""); gsub("&nbsp;", " "); print $0}' | sort -nk3 > total.txt
 cat *.result | awk -vFS="\t" 'length($3)==0' > norank.txt
 cat norank.txt >> total.txt
 
-#echo "base     url     排名    图片    商标    商品名  review  价格    新商品  老商品  描述" > ../$sellor"total.txt"
-#cat total.txt >> ../$sellor"total.txt"
+#echo "base     url     排名    图片    商标    商品名  review  价格    新商品  老商品  描述" > ../$sellor_path"total.txt"
+#cat total.txt >> ../$sellor_path"total.txt"
 #
-echo	"base	排名	类别	图片	商标	商品名	review	价格	新商品	老商品	描述"	>	../$sellor"total.txt"
+echo	"base	排名	类别	图片	商标	商品名	review	价格	新商品	老商品	描述"	>	../$sellor_path"total.txt"
 awk -vFS="\t" '{
     idx=index($3," ");
     score=substr($3,0,idx);
     type=substr($3,idx+3);
-    print $1"\t"score"\t"type"\t"$4"\t"$5"\t"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11;}' total.txt >> ../$sellor"total.txt"
+    print $1"\t"score"\t"type"\t"$4"\t"$5"\t"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11;}' total.txt >> ../$sellor_path"total.txt"
 
-echo "<table><tr><td>url</td><td>排名</td><td>  图片</td><td>   商标</td><td>   商品名</td><td> review</td><td> 价格</td><td>   新商品</td><td> 老商品</td><td>      描述</td></tr>" > ../$sellor"total.html"
-awk -vFS="\t" '{print "<tr><td><a href=\""$2"\">"$1"</a></td><td>"$3"</td><td><img src="$4" width=200 /></td><td>"$5"</td><td>"$6"</td><td>"$7"</td><td>"$8"</td><td>"$9"</td><td>"$10"</td><td></tr>";}' total.txt >> ../$sellor"total.html"
-echo "</table>" >> ../$sellor"total.html"
+echo "<table><tr><td>url</td><td>排名</td><td>  图片</td><td>   商标</td><td>   商品名</td><td> review</td><td> 价格</td><td>   新商品</td><td> 老商品</td><td>      描述</td></tr>" > ../$sellor_path"total.html"
+awk -vFS="\t" '{print "<tr><td><a href=\""$2"\">"$1"</a></td><td>"$3"</td><td><img src="$4" width=200 /></td><td>"$5"</td><td>"$6"</td><td>"$7"</td><td>"$8"</td><td>"$9"</td><td>"$10"</td><td></tr>";}' total.txt >> ../$sellor_path"total.html"
+echo "</table>" >> ../$sellor_path"total.html"
 
 
 if [ $iftest -eq 0 ]; then
- sz ../$sellor"total.txt"
+ sz ../$sellor_path"total.txt"
 fi
 
 cd ..
-#rm $sellor -rf
+#rm $sellor_path -rf
 
-#rm $sellor.lock
+#rm $sellor_path.lock

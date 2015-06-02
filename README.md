@@ -12,14 +12,14 @@
                 * it - Italy 
                 * jp - Japan
         * output: analysis result
-            * key + total.txt
+            * key + country + total.txt
         * for example: [link](http://www.amazon.com/s?marketplaceID=ATVPDKIKX0DER&me=A3GWKTDVH3V66K&merchant=A3GWKTDVH3V66K&redirect=true)
         
            ```shell
-             sh simple_get.sh A3GWKTDVH3V66K us > A3GWKTDVH3V66K.log 2>&1 &
-             result : A3GWKTDVH3V66Ktotal.txt
+             sh simple_get.sh A3GWKTDVH3V66K us > A3GWKTDVH3V66Kus.log 2>&1 &
+             result : A3GWKTDVH3V66Kustotal.txt
            ```
-    * usage: sh simple_get.sh [key] [country] > key.log 2>&1 &
+    * usage: sh simple_get.sh [key] [country] > keycountry.log 2>&1 &
 2. status log:
     * 2015-6-1 10:31:37 uk & us finished 
     * 2015-6-1 14:28:55 finish ca, de, fr, es, it, jp 
