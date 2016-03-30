@@ -51,7 +51,7 @@ mv $sellor_path"total.txt" backup/$backtime$sellor_path"total.txt"
 mv $sellor_path"total.csv" backup/$backtime$sellor_path"total.csv"
 
 cd $sellor_path
-#rm * -rf
+rm * -rf
 start=1
 
 MAX_JOBNUM=2
@@ -119,7 +119,7 @@ cd ..
 
 if [ $iftest -eq 0 ]; then
     subject=`date +"%Y-%m-%d %H:%M:%S"`"  "$sellor_path
-    python sendmail.py -f "newle.hit@gmail.com" -t "34719570@qq.com;649890795@qq.com;david@omgaidirect.com" -s "$subject" -a $sellor_path"total.csv" -c $sellor_path"total.html"
+    python sendmail.py -f 'newle.hit@gmail.com' -t '34719570@qq.com;649890795@qq.com;david@omgaidirect.com' -s "$subject" -a $sellor_path"total.csv" -c $sellor_path"total.html"
 fi
 
 #rm $sellor_path -rf
