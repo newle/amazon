@@ -75,11 +75,11 @@ done
 #http://www.amazon.co.uk/dp/B009NBUJL2?ie=UTF8&m=A3EFHR7YJIPFL0
 
 dub=`du -b ../$sellor_path.log | awk '{print $1}'`
-sleep 2
+sleep 10
 newdub=`du -b ../$sellor_path.log | awk '{print $1}'`
 while [[ $newdub -ne $dub ]]; do
    dub=$newdub
-   sleep 2
+   sleep 10
    newdub=`du -b ../$sellor_path.log | awk '{print $1}'`
 done
 
@@ -101,12 +101,12 @@ echo "<table><tr><td>url</td><td>≈≈√˚</td><td>  Õº∆¨</td><td>   …Ã±Í</td><td>   
 awk -vFS="\t" '{print "<tr><td><a href=\""$2"\">"$1"</a></td><td>"$3"</td><td><img src="$4" width=200 /></td><td>"$5"</td><td>"$6"</td><td>"$7"</td><td>"$8"</td><td>"$9"</td><td>"$10"</td><td></tr>";}' total.txt >> ../$sellor_path"total.html"
 echo "</table>" >> ../$sellor_path"total.html"
 
-
+cd ..
 if [ $iftest -eq 0 ]; then
- sz ../$sellor_path"total.txt"
+    subject=`date +"%Y-%m-%d %H:%M:%S"`"  "$sellor_path
+    python sendmail.py -f newle.hit@gmail.com -t "34719570@qq.com;649890795@qq.com;david@omgaidirect.com" -s "$subject" -a $sellor_path"total.csv" -c $sellor_path"total.html"
 fi
 
-cd ..
 #rm $sellor_path -rf
 
 #rm $sellor_path.lock
