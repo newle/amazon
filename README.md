@@ -35,3 +35,8 @@
     * es : http://www.amazon.es/gp/aag/main?ie=UTF8&asin=&isAmazonFulfilled=&isCBA=&marketplaceID=A1RKKUPIHCS9HS&orderID=&seller=AUNGYH863E97M&sshmPath=
     * it : http://www.amazon.it/gp/aag/main?ie=UTF8&asin=&isAmazonFulfilled=&isCBA=&marketplaceID=APJ6JRA9NG5V4&orderID=&seller=AUNGYH863E97M&sshmPath=
     * jp : http://www.amazon.co.jp/gp/aag/main/ref=olp_merch_name_1?ie=UTF8&asin=B00DANSDD0&isAmazonFulfilled=0&seller=A3VNZZ5M6SIYCP
+3. mail send module
+    * Usage: 
+    ``` shell
+    python sendmail.py -h
+    ```
