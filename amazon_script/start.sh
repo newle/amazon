@@ -8,7 +8,7 @@ fi
 
 sh simple_get.sh $1 $2 > $1$2.log 2>&1 &
 
-tail -f $1$2.log
+#tail -f $1$2.log
 
 
 

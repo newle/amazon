@@ -44,9 +44,14 @@ fi
 sellor=$1
 sellor_path=$1$2
 mkdir -p $sellor_path
+
+backtime=`date +"%Y%m%d%H%M"`
+mv $sellor_path"total.html" backup/$backtime$sellor_path"total.html"
+mv $sellor_path"total.txt" backup/$backtime$sellor_path"total.txt"
+mv $sellor_path"total.csv" backup/$backtime$sellor_path"total.csv"
+
 cd $sellor_path
 #rm * -rf
-
 start=1
 
 MAX_JOBNUM=2
@@ -97,14 +102,24 @@ awk -vFS="\t" '{
     type=substr($3,idx+3);
     print $1"\t"score"\t"type"\t"$4"\t"$5"\t"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11;}' total.txt >> ../$sellor_path"total.txt"
 
+echo "base,排名,类别,图片,商标,商品名,review,价格,新商品,老商品,描述"	>	../$sellor_path"total.csv"
+awk -vFS="\t" '{
+    idx=index($3," ");
+    score=substr($3,0,idx);
+    type=substr($3,idx+3);
+    print $1","score","type","$4","$5","$6","$7","$8","$9","$10","$11;}' total.txt >> ../$sellor_path"total.csv"
+
+
+
 echo "<table><tr><td>url</td><td>排名</td><td>  图片</td><td>   商标</td><td>   商品名</td><td> review</td><td> 价格</td><td>   新商品</td><td> 老商品</td><td>      描述</td></tr>" > ../$sellor_path"total.html"
 awk -vFS="\t" '{print "<tr><td><a href=\""$2"\">"$1"</a></td><td>"$3"</td><td><img src="$4" width=200 /></td><td>"$5"</td><td>"$6"</td><td>"$7"</td><td>"$8"</td><td>"$9"</td><td>"$10"</td><td></tr>";}' total.txt >> ../$sellor_path"total.html"
 echo "</table>" >> ../$sellor_path"total.html"
 
 cd ..
+
 if [ $iftest -eq 0 ]; then
     subject=`date +"%Y-%m-%d %H:%M:%S"`"  "$sellor_path
-    python sendmail.py -f newle.hit@gmail.com -t "34719570@qq.com;649890795@qq.com;david@omgaidirect.com" -s "$subject" -a $sellor_path"total.csv" -c $sellor_path"total.html"
+    python sendmail.py -f "newle.hit@gmail.com" -t "34719570@qq.com;649890795@qq.com;david@omgaidirect.com" -s "$subject" -a $sellor_path"total.csv" -c $sellor_path"total.html"
 fi
 
 #rm $sellor_path -rf
