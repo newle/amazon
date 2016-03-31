@@ -73,8 +73,10 @@ if __name__ == "__main__":
     opts, args = getopt.getopt(sys.argv[1:], "hf:t:a:s:c:")
     for op, value in opts:
         if op == "-f":
+            del msg['From']
             msg['From'] = value
         elif op == "-t":
+            del msg['To']
             msg['To'] = value
         elif op == "-a":
             attaches = value.split(";")
@@ -89,6 +91,6 @@ if __name__ == "__main__":
             sys.exit()
     
 
-    s = smtplib.SMTP('localhost')
+    s = smtplib.SMTP('127.0.0.1')
     s.sendmail(msg['From'], msg['To'].split(";"), msg.as_string())
     s.quit()
