@@ -1,5 +1,5 @@
 #!/bin/sh
-
+#&marketplaceID=A1F83G8C2ARO7P
 
 iftest=0
 if [ $# -ge 2 ]; then 
@@ -61,11 +61,11 @@ while [[ 1 ]]; do
     i=$start
     wget $site --post-data="seller=$sellor&currentPage=$i&useMYI=0" -O $i.html 
     filedu=`du -b $i.html | awk '{print $1}'`
-    if [ $filedu -lt 70 ]; then
+    if [ $filedu -lt 150 ]; then
       break;
     fi
 
-    cat $i.html | grep -a -o -zP "(?<=\")\w+(?=\")" | awk -v head=$head '{print $0"\t"head""$0;}' | while read line; do
+    cat $i.html | grep -o -zP '(?<=dp\/)[^\\\"]+' | sort -u | awk -v head=$head '{print $0"\t"head""$0;}' | while read line; do
         processline $i $line
     done
 
@@ -92,17 +92,17 @@ cat *.result | awk -vFS="\t" 'length($3)>0{gsub(",",""); gsub("#",""); gsub("&nb
 cat *.result | awk -vFS="\t" 'length($3)==0' > norank.txt
 cat norank.txt >> total.txt
 
-#echo "base     url     排名    图片    商标    商品名  review  价格    新商品  老商品  描述" > ../$sellor_path"total.txt"
+#echo "base     url     ????    图片    ?瘫?    ??品??  review  ?鄹?    ????品  ????品  ????" > ../$sellor_path"total.txt"
 #cat total.txt >> ../$sellor_path"total.txt"
 #
-echo	"base	排名	类别	图片	商标	商品名	review	价格	新商品	老商品	描述"	>	../$sellor_path"total.txt"
+echo	"base	????	????	图片	?瘫?	??品??	review	?鄹?	????品	????品	????"	>	../$sellor_path"total.txt"
 awk -vFS="\t" '{
     idx=index($3," ");
     score=substr($3,0,idx);
     type=substr($3,idx+3);
     print $1"\t"score"\t"type"\t"$4"\t"$5"\t"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11;}' total.txt >> ../$sellor_path"total.txt"
 
-echo "base,排名,类别,图片,商标,商品名,review,价格,新商品,老商品,描述"	>	../$sellor_path"total.csv"
+echo "base,????,????,图片,?瘫?,??品??,review,?鄹?,????品,????品,????"	>	../$sellor_path"total.csv"
 awk -vFS="\t" '{
     idx=index($3," ");
     score=substr($3,0,idx);
@@ -111,16 +111,16 @@ awk -vFS="\t" '{
 
 
 
-echo "<table><tr><td>url</td><td>排名</td><td>  图片</td><td>   商标</td><td>   商品名</td><td> review</td><td> 价格</td><td>   新商品</td><td> 老商品</td><td>      描述</td></tr>" > ../$sellor_path"total.html"
+echo "<table><tr><td>url</td><td>????</td><td>  图片</td><td>   ?瘫?</td><td>   ??品??</td><td> review</td><td> ?鄹?</td><td>   ????品</td><td> ????品</td><td>      ????</td></tr>" > ../$sellor_path"total.html"
 awk -vFS="\t" '{print "<tr><td><a href=\""$2"\">"$1"</a></td><td>"$3"</td><td><img src="$4" width=200 /></td><td>"$5"</td><td>"$6"</td><td>"$7"</td><td>"$8"</td><td>"$9"</td><td>"$10"</td><td></tr>";}' total.txt >> ../$sellor_path"total.html"
 echo "</table>" >> ../$sellor_path"total.html"
 
 cd ..
 
-if [ $iftest -eq 0 ]; then
-    subject=`date +"%Y-%m-%d %H:%M:%S"`"  "$sellor_path
-    python sendmail.py -f 'newle.hit@gmail.com' -t '34719570@qq.com;649890795@qq.com;david@omgaidirect.com' -s "$subject" -a $sellor_path"total.csv" -c $sellor_path"total.html"
-fi
+#if [ $iftest -eq 0 ]; then
+#    subject=`date +"%Y-%m-%d %H:%M:%S"`"  "$sellor_path
+#    python sendmail.py -f 'newle.hit@gmail.com' -t '34719570@qq.com;649890795@qq.com;david@omgaidirect.com' -s "$subject" -a $sellor_path"total.csv" -c $sellor_path"total.html"
+#fi
 
 #rm $sellor_path -rf
 

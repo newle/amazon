@@ -3,7 +3,8 @@
 #http://www.amazon.fr/gp/aag/main?ie=UTF8&asin=&isAmazonFulfilled=&isCBA=&marketplaceID=A1F83G8C2ARO7P&orderID=&seller=A27JMYAV17VOL1&sshmPath=
 #A27JMYAV17VOL1
 
-site="http://www.amazon.fr/gp/aag/ajax/searchResultsJson.html"
+#site="http://www.amazon.fr/gp/aag/ajax/searchResultsJson.html"
+site="https://www.amazon.fr/gp/aag/ajax/getAsinListJson.html"
 head="http://www.amazon.fr/dp/"
 
 function processline()

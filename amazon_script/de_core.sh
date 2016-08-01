@@ -1,7 +1,8 @@
 #http://www.amazon.de/gp/aag/main?ie=UTF8&asin=&isAmazonFulfilled=&isCBA=&marketplaceID=A1PA6795UKMFR9&orderID=&seller=A11EKHJ9JF38TG&sshmPath=
 #A1PA6795UKMFR9
 
-site="http://www.amazon.de/gp/aag/ajax/searchResultsJson.html"
+#site="http://www.amazon.de/gp/aag/ajax/searchResultsJson.html"
+site="https://www.amazon.de/gp/aag/ajax/getAsinListJson.html"
 head="http://www.amazon.de/dp/"
 
 function processline()
